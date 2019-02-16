@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Row,
-  Col,
-  Select,
-  Checkbox,
-  Button,
-  AutoComplete
-} from "antd";
-
-const { Option } = Select;
+import { Form, Input, Row, Col, Checkbox, Button } from "antd";
 
 class RegistrationForm extends React.Component {
   state = {

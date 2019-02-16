@@ -1,18 +1,46 @@
 import React from "react";
 import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
+import { withFirebase } from "../Firebase";
+import { compose } from "recompose";
+
+const LoginPage = () => (
+  <div>
+    <NormalLoginForm />
+  </div>
+);
+
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+  error: null
+};
 
 class NormalLoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE };
+  }
+
   handleSubmit = e => {
+    const { email, password } = this.state;
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { email, password, error } = this.state;
+
+    const isInvalid = password === "" || email === "";
+
     return (
       <Row
         style={{
@@ -25,16 +53,18 @@ class NormalLoginForm extends React.Component {
         <Col span={6}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
-              {getFieldDecorator("userName", {
-                rules: [
-                  { required: true, message: "Please input your username!" }
-                ]
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
               })(
                 <Input
                   prefix={
                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
-                  placeholder="Username"
+                  placeholder="Email Address"
+                  type="text"
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
                 />
               )}
             </Form.Item>
