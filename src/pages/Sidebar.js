@@ -25,36 +25,17 @@ class Sidebar extends Component {
               </span>
             }
           >
-            <Menu.Item key="1">Resources</Menu.Item>
-            <Menu.Item key="2">Discussion</Menu.Item>
-            <Menu.Item key="3">Mentors</Menu.Item>
+            <Menu.Item key="1">
+              <Link to="resourcelist">Resources</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="discussionboard">Discussion</Link>
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Link to="mentorlist">Mentors</Link>
+            </Menu.Item>
           </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="appstore" />
-                <span>Course Two</span>
-              </span>
-            }
-          >
-            <Menu.Item key="4">Resources</Menu.Item>
-            <Menu.Item key="5">Discussion</Menu.Item>
-            <Menu.Item key="6">Mentors</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub4"
-            title={
-              <span>
-                <Icon type="setting" />
-                <span>Course Three</span>
-              </span>
-            }
-          >
-            <Menu.Item key="7">Resouces</Menu.Item>
-            <Menu.Item key="8">Discussion</Menu.Item>
-            <Menu.Item key="9">Mentors</Menu.Item>
-          </SubMenu>
+          {/* Add Class */}
           <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
             <Icon type="plus" />
             <span style={{ fontSize: 20 }}>

@@ -2,17 +2,24 @@ import React, { Component } from "react";
 import { Layout, Icon, List } from "antd";
 
 const { Content } = Layout;
-const listData = [];
-for (let i = 0; i < 1; i++) {
-  listData.push({
+const listData = [
+  {
     href: "http://ant.design",
     title: `Intro to Modern Design Principles`,
     description:
       "Ant Design, a design language for background applications, is refined by Ant UED Team.",
     content:
       "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-  });
-}
+  },
+  {
+    href: "http://ant.design",
+    title: `Intro tsafasfasfsafDegasples`,
+    description:
+      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+    content:
+      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+  }
+];
 
 const IconText = ({ type, text }) => (
   <span>
