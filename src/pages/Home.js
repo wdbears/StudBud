@@ -54,6 +54,7 @@ class Home extends Component {
               >
                 <Menu.Item key="1">Resources</Menu.Item>
                 <Menu.Item key="2">Discussion</Menu.Item>
+                <Menu.Item key="3">Mentors</Menu.Item>
               </SubMenu>
               <SubMenu
                 key="sub2"
@@ -64,8 +65,9 @@ class Home extends Component {
                   </span>
                 }
               >
-                <Menu.Item key="3">Resources</Menu.Item>
-                <Menu.Item key="4">Discussion</Menu.Item>
+                <Menu.Item key="4">Resources</Menu.Item>
+                <Menu.Item key="5">Discussion</Menu.Item>
+                <Menu.Item key="6">Mentors</Menu.Item>
               </SubMenu>
               <SubMenu
                 key="sub4"
@@ -76,8 +78,9 @@ class Home extends Component {
                   </span>
                 }
               >
-                <Menu.Item key="5">Resouces</Menu.Item>
-                <Menu.Item key="6">Discussion</Menu.Item>
+                <Menu.Item key="7">Resouces</Menu.Item>
+                <Menu.Item key="8">Discussion</Menu.Item>
+                <Menu.Item key="9">Mentors</Menu.Item>
               </SubMenu>
             </Menu>
           </Sider>
