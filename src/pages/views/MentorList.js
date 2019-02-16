@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Avatar, List, Skeleton, Modal, Button } from "antd";
-import NYUClassData from "../helperMethods/NYUClassData";
+import NYUClassData from "../../helperMethods/NYUClassData";
 
 const headers = new Headers();
 headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");

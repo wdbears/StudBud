@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { Menu, Icon } from "antd";
 import { Link, NavLink } from "react-router-dom";
 
-// const SubMenu = Menu.SubMenu;
-// const MenuItemGroup = Menu.ItemGroup;
-
 class Navbar extends Component {
   state = {
-    current: "mail"
+    current: "brand-name"
   };
 
   handleClick = e => {

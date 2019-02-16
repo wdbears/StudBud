@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Row,
-  Col,
-  Select,
-  Checkbox,
-  Button,
-  AutoComplete
-} from "antd";
-
-const { Option } = Select;
+import { Form, Input, Row, Col, Checkbox, Button } from "antd";
+import "../styles/Main.css";
 
 class RegistrationForm extends React.Component {
   state = {
@@ -53,14 +43,7 @@ class RegistrationForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <Row
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "10vw"
-        }}
-      >
+      <Row className="center">
         <Col span={6}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Item label="E-mail">
@@ -108,7 +91,7 @@ class RegistrationForm extends React.Component {
                 valuePropName: "checked"
               })(
                 <Checkbox>
-                  I have read the <a href="">agreement</a>
+                  I have read the <a href="www.google.com">agreement</a>
                 </Checkbox>
               )}
             </Form.Item>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
+import { Link } from "react-router-dom";
+import "../styles/Main.css";
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -14,13 +16,7 @@ class NormalLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Row
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
+      <Row className="center">
         <Col span={6}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
@@ -71,7 +67,7 @@ class NormalLoginForm extends React.Component {
               <a className="login-form-forgot" href=".">
                 Forgot password
               </a>{" "}
-              Or <a href=".">Register now!</a>
+              Or <Link to="/register">Register now!</Link>
             </Form.Item>
           </Form>
         </Col>
