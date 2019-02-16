@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Avatar, List, Skeleton, Modal, Button } from "antd";
+import { Avatar, List, Skeleton, Button, Layout } from "antd";
 import NYUClassData from "../../helperMethods/NYUClassData";
 
 const headers = new Headers();
 headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");
+
+const { Content } = Layout;
 
 const init = {
   method: "GET",
@@ -15,12 +17,14 @@ const data = [
   {
     title: "Mentor 1",
     description: "Math"
+  },
+  {
+    title: "Mentor 2",
+    description: "English"
   }
 ];
 
 class MentorList extends Component {
-  state = { visibleModal: false, classes: [] };
-
   componentDidMount() {
     fetch(
       "https://sandbox.api.it.nyu.edu/class-roster-exp/classes?term_description=Spring 2018",
@@ -41,61 +45,38 @@ class MentorList extends Component {
       });
   }
 
-  showModal = () => {
-    this.setState({
-      visibleModal: true
-    });
-  };
-
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visibleModal: false
-    });
-  };
-
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      visibleModal: false
-    });
-  };
-
   render() {
     return (
-      <div>
-        <List
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={item => (
-            <List.Item
-              actions={[
-                <Button type="primary" onClick={this.showModal}>
-                  Email
-                </Button>
-              ]}
-            >
-              <Skeleton avatar title={false} loading={item.loading} active>
-                <List.Item.Meta
-                  avatar={
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                  }
-                  title={item.title}
-                  description={item.description}
-                />
-              </Skeleton>
-            </List.Item>
-          )}
-        />
-        <Modal
-          title="Contact Mentor"
-          visible={this.state.visibleModal}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
+      <Layout style={{ padding: "24px 24px 0" }}>
+        <Content
+          style={{
+            background: "#fff",
+            padding: 24,
+            margin: 0
+          }}
         >
-          <p>Some contents...</p>
-        </Modal>
-      </div>
+          <div>
+            <span style={{ fontSize: 45 }}>Mentors</span>
+          </div>
+          <List
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={item => (
+              <List.Item actions={[<Button type="primary">Contact</Button>]}>
+                <Skeleton avatar title={false} loading={item.loading} active>
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                    title={item.title}
+                    description={item.description}
+                  />
+                </Skeleton>
+              </List.Item>
+            )}
+          />
+        </Content>
+      </Layout>
     );
   }
 }
