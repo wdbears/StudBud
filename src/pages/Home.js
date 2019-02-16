@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import { Layout, Menu, Icon, List } from "antd";
-import React from "react";
-import GroupStudy from "../images/groupstudy.jpg";
+// import GroupStudy from "../images/groupstudy.jpg";
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
-const center_style = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center"
-};
+// const center_style = {
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center"
+// };
 
 const listData = [];
 for (let i = 0; i < 5; i++) {
@@ -35,9 +33,6 @@ class Home extends Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh", zIndex: "-1" }}>
-        <Header className="header" style={{ background: "#fff" }}>
-          <Navbar />
-        </Header>
         <Layout>
           <Sider width={200} style={{ background: "#fff" }}>
             <Menu
@@ -119,12 +114,6 @@ class Home extends Component {
       </Layout>
     );
   }
-}
-
-export default Home;
-
-function Home() {
-  return <img alt="groupstudy" src={GroupStudy} style={{ width: "100vw" }} />;
 }
 
 export default Home;
