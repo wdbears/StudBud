@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Home from "../pages/Home";
 import Navbar from "./Navbar";
 import MentorList from "./MentorList";
 import "./styles/App.css";
