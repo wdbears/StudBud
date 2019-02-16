@@ -82,6 +82,10 @@ class Home extends Component {
                 <Menu.Item key="8">Discussion</Menu.Item>
                 <Menu.Item key="9">Mentors</Menu.Item>
               </SubMenu>
+              <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
+                <Icon type="plus" />
+                <span style={{ fontSize: 20 }}>Add Class</span>
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout style={{ padding: "24px 24px 0" }}>
