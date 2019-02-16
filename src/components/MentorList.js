@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Avatar, List, Skeleton, Modal, Button } from "antd";
+import NYUClassData from "../helperMethods/NYUClassData";
 
 const headers = new Headers();
 headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");
@@ -33,15 +34,19 @@ class MentorList extends Component {
   state = { visibleModal: false, classes: [] };
 
   componentDidMount() {
-    fetch("https://sandbox.api.it.nyu.edu/class-roster-exp/classes", init)
+    fetch(
+      "https://sandbox.api.it.nyu.edu/class-roster-exp/classes?term_description=Spring 2018",
+      init
+    )
       .then(response => {
-        console.log(response.json()); // or .json() or .blob() ...
+        return response.json(); // or .json() or .blob() ...
       })
-
       .then(data => {
-        let classes = data.results;
+        let classes = data.map(classData => {
+          return new NYUClassData(classData);
+        });
         this.setState({ classes: classes });
-        console.log(data);
+        console.log(this.state.classes);
       })
       .catch(e => {
         // error in e.message
