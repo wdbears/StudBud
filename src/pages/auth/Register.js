@@ -1,20 +1,26 @@
 import React from "react";
 import { Form, Input, Row, Col, Checkbox, Button } from "antd";
 import "../styles/Main.css";
+//import Firebase from "../../components/Firebase/firebase";
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: []
+    autoCompleteResult: [],
+    email: "",
+    password: ""
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
+  handleChange = e => {};
+
+  handleSubmit = event => {
+    console.log(event.currentTarget.password.value);
+    // Firebase.doCreateUserWithEmailAndPassword(e.email, e.password).catch(
+    //   error => {
+    //     this.setState({ error });
+    //   }
+    // )
+    event.preventDefault();
   };
 
   handleConfirmBlur = e => {
