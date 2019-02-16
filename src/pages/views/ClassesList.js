@@ -17,7 +17,7 @@ const url =
 
 class ClassesList extends Component {
   state = {
-    initLoading: true,
+    initLoading: false,
     loading: false,
     data: [],
     list: []
@@ -39,15 +39,6 @@ class ClassesList extends Component {
         // error in e.message
       });
   }
-
-  // reqwest({
-  //   url: "google.com",
-  //   type: "json",
-  //   method: "get",
-  //   contentType: "application/json",
-  //   success: res => {
-  //     callback(res);
-  //   }
 
   onLoadMore = () => {
     this.setState({

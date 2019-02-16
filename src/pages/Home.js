@@ -80,11 +80,13 @@ class Home extends Component {
               </SubMenu>
               <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
                 <Icon type="plus" />
-                <span style={{ fontSize: 20 }}>Add Class</span>
+                <span style={{ fontSize: 20 }}>
+                  <Link to="/classes">Add Class</Link>
+                </span>
               </Menu.Item>
             </Menu>
           </Sider>
-          <ReferencesList />
+          <ResourceList />
         </Layout>
       </Layout>
     );
