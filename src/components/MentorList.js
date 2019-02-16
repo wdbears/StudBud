@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Avatar, List, Skeleton, Modal, Button } from "antd";
 
+const headers = new Headers();
+headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");
+
+const init = {
+  method: "GET",
+  cors: "no-cors",
+  headers
+};
+
 const data = [
   {
     title: "Mentor 1",
@@ -21,25 +30,41 @@ const data = [
 ];
 
 class MentorList extends Component {
-  state = { visible: false };
+  state = { visibleModal: false, classes: [] };
+
+  componentDidMount() {
+    fetch("https://sandbox.api.it.nyu.edu/class-roster-exp/classes", init)
+      .then(response => {
+        console.log(response.json()); // or .json() or .blob() ...
+      })
+
+      .then(data => {
+        let classes = data.results;
+        this.setState({ classes: classes });
+        console.log(data);
+      })
+      .catch(e => {
+        // error in e.message
+      });
+  }
 
   showModal = () => {
     this.setState({
-      visible: true
+      visibleModal: true
     });
   };
 
   handleOk = e => {
     console.log(e);
     this.setState({
-      visible: false
+      visibleModal: false
     });
   };
 
   handleCancel = e => {
     console.log(e);
     this.setState({
-      visible: false
+      visibleModal: false
     });
   };
 
@@ -71,7 +96,7 @@ class MentorList extends Component {
         />
         <Modal
           title="Contact Mentor"
-          visible={this.state.visible}
+          visible={this.state.visibleModal}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
