@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./Navbar";
-import MentorList from "./MentorList";
-import "./styles/App.css";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar />
-        <MentorList />
-        <Login />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
