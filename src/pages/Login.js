@@ -18,8 +18,7 @@ class NormalLoginForm extends React.Component {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          marginTop: "10vw"
+          justifyContent: "center"
         }}
       >
         <Col span={6}>
@@ -58,9 +57,8 @@ class NormalLoginForm extends React.Component {
                 valuePropName: "checked",
                 initialValue: true
               })(<Checkbox>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href=".">
-                Forgot password
-              </a>
+            </Form.Item>
+            <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -68,7 +66,12 @@ class NormalLoginForm extends React.Component {
               >
                 Log in
               </Button>
-              Or <a href=".">register now!</a>
+            </Form.Item>
+            <Form.Item>
+              <a className="login-form-forgot" href=".">
+                Forgot password
+              </a>{" "}
+              Or <a href=".">Register now!</a>
             </Form.Item>
           </Form>
         </Col>
