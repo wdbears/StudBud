@@ -23,6 +23,7 @@ class Navbar extends Component {
         onClick={this.handleClick}
         selectedKeys={[this.state.current]}
         mode="horizontal"
+        style={{ lineHeight: "63px" }}
       >
         <Menu.Item key="brand-name">
           <Link to="/">
