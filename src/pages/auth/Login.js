@@ -67,7 +67,8 @@ class NormalLoginForm extends React.Component {
               <a className="login-form-forgot" href=".">
                 Forgot password
               </a>
-              Or <Link to="/register">Register now!</Link>
+              <span>{" or"}</span>
+              <Link to="/register"> Register now!</Link>
             </Form.Item>
           </Form>
         </Col>

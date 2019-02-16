@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon } from "antd";
+import { Menu, Icon, Switch } from "antd";
 import { Link, NavLink } from "react-router-dom";
 
 class Navbar extends Component {
@@ -27,6 +27,9 @@ class Navbar extends Component {
             <Icon type="team" />
             StudBud
           </Link>
+        </Menu.Item>
+        <Menu.Item key="slider" style={{ float: "right" }}>
+          <Switch onChange={this.props.onChange} />
         </Menu.Item>
         <Menu.Item key="login" style={{ float: "right" }}>
           <NavLink to="/login">

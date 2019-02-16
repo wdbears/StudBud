@@ -13,12 +13,18 @@ import { Layout } from "antd";
 
 class App extends Component {
   state = { loggedIn: false };
+  onChange = this.onChange.bind(this);
+
+  onChange(checked) {
+    this.setState({ loggedIn: checked });
+  }
+
   render() {
     if (!this.state.loggedIn) {
       return (
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar onChange={this.onChange} />
             <Route exact path="/" component={Login} />
             <Route exact path="/login" component={Login} />
             <Route path="/register" component={Register} />
@@ -29,7 +35,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar onChange={this.onChange} />
             <Layout style={{ minHeight: "90vh", zIndex: "-1" }}>
               <Sidebar />
               <Layout>
