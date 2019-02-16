@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
 import ReferencesList from "./views/ReferencesList";
+import Comments from "./views/Comments";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -8,7 +9,7 @@ const SubMenu = Menu.SubMenu;
 class Home extends Component {
   render() {
     return (
-      <Layout style={{ minHeight: "90vh", zIndex: "-1" }}>
+      <Layout style={{ minHeight: "92.3vh", zIndex: "-1" }}>
         <Layout>
           <Sider width={200} style={{ background: "#fff" }}>
             <Menu
