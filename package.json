@@ -6,6 +6,7 @@
     "antd": "^3.13.2",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.11",
+    "firebase": "^5.8.3",
     "react": "^16.8.2",
     "react-app-rewired": "^2.1.0",
     "react-dom": "^16.8.2",
