@@ -21,7 +21,7 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-class Home extends Component {
+class ResourceList extends Component {
   render() {
     return (
       <Layout style={{ padding: "24px 24px 0" }}>
@@ -70,4 +70,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default ResourceList;

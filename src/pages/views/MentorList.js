@@ -15,18 +15,6 @@ const data = [
   {
     title: "Mentor 1",
     description: "Math"
-  },
-  {
-    title: "Mentor 2",
-    description: "Science"
-  },
-  {
-    title: "Mentor 3",
-    description: "English"
-  },
-  {
-    title: "Mentor 4",
-    description: "Computer Science"
   }
 ];
 
