@@ -79,21 +79,6 @@ class ClassesList extends Component {
   };
 
   render() {
-    const { initLoading, loading, list } = this.state;
-    const loadMore =
-      !initLoading && !loading ? (
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: 12,
-            height: 32,
-            lineHeight: "32px"
-          }}
-        >
-          <Button onClick={this.onLoadMore}>loading more</Button>
-        </div>
-      ) : null;
-
     return (
       <Layout style={{ padding: "24px 24px 0" }}>
         <Content
