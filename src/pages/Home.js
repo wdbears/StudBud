@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
-import ReferencesList from "./views/ReferencesList";
+import { Link } from "react-router-dom";
+import ResourceList from "./views/ResourceList";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -58,11 +59,13 @@ class Home extends Component {
               </SubMenu>
               <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
                 <Icon type="plus" />
-                <span style={{ fontSize: 20 }}>Add Class</span>
+                <span style={{ fontSize: 20 }}>
+                  <Link to="/classes">Add Class</Link>
+                </span>
               </Menu.Item>
             </Menu>
           </Sider>
-          <ReferencesList />
+          <ResourceList />
         </Layout>
       </Layout>
     );
