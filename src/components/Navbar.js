@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon, Switch } from "antd";
+import { Menu, Icon } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "antd/lib/radio";
 
@@ -15,13 +15,6 @@ class Navbar extends Component {
   componentDidUpdate() {
     this.authSwitch();
   }
-
-  handleClick = e => {
-    console.log("click ", e);
-    this.setState({
-      current: e.key
-    });
-  };
 
   authSwitch() {
     if (this.props.userExists) {
@@ -58,9 +51,6 @@ class Navbar extends Component {
             <Icon type="team" />
             StudBud
           </Link>
-        </Menu.Item>
-        <Menu.Item key="slider" style={{ float: "right" }}>
-          <Switch onChange={this.props.onChange} />
         </Menu.Item>
         {this.authSwitch()}
       </Menu>
