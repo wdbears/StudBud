@@ -23,8 +23,10 @@ class Navbar extends Component {
           onClick={this.props.logout}
           style={{ float: "right" }}
         >
-          <Icon type="logout" />
-          Signout
+          <NavLink to="/login">
+            <Icon type="logout" />
+            Signout
+          </NavLink>
         </Menu.Item>
       );
     } else {
