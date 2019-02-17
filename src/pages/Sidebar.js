@@ -5,6 +5,7 @@ import firebase, { database } from "../components/Firebase/firebase";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+var arr = [];
 
 class Sidebar extends Component {
   // submenu keys of first level
@@ -36,35 +37,58 @@ class Sidebar extends Component {
   };
 
   componentDidMount() {
-    this.getUserClasses();
-    console.log(this.state.objList[0]);
+    this.getUserClasses().then(result => {
+      console.log(result);
+    });
   }
 
-  async getUserClasses() {
-    var ref = database.ref(
+  // getUserClasses() {
+  //   var test = [];
+  //   var ref = database.ref(
+  //     firebase.auth().currentUser.uid + "/classSubscriptions/"
+  //   );
+  //   ref.once("value").then(function(snapshot) {
+  //     snapshot.forEach(function(childSnapshot) {
+  //       var classObj = {
+  //         course_title: childSnapshot.key,
+  //         nyu_course_id: childSnapshot.val().nyu_course_id
+  //       };
+  //       test.push(classObj);
+  //     });
+  //   });
+  //   // Attach an asynchronous callback to read the data at our posts reference
+  //   ref.once("value", function(snapshot) {
+  //     snapshot.forEach(function(childSnapshot) {
+  //       var classObj = {
+  //         course_title: childSnapshot.key,
+  //         nyu_course_id: childSnapshot.val().nyu_course_id
+  //       };
+  //       test.push(classObj);
+  //     });
+  //     //this.setState({ objList: test });
+  //     console.log(test);
+  //   });
+  //   //await this.setState({ objList: temp });
+  // }
+
+  getUserClasses = function() {
+    var query = database.ref(
       firebase.auth().currentUser.uid + "/classSubscriptions/"
     );
-    let temp = [];
-    // Attach an asynchronous callback to read the data at our posts reference
-    ref.on(
-      "value",
-      function(snapshot) {
+    var listOfItems = [];
+    return new Promise((resolve, reject) => {
+      query.once("value").then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
-          const classObj = {
+          var classObj = {
             course_title: childSnapshot.key,
             nyu_course_id: childSnapshot.val().nyu_course_id
           };
-          temp.push(classObj);
+          listOfItems.push(classObj);
         });
-      },
-      function(errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
-    );
-    await this.setState({ objList: temp });
-
-    console.log(temp);
-  }
+        resolve(listOfItems);
+      });
+    });
+  };
 
   render() {
     return (
