@@ -1,12 +1,12 @@
 import React from "react";
-import { Row, Col, Form, Icon, Input, Button, Checkbox, message } from "antd";
+import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import "../styles/Main.css";
 import { auth } from "../../components/Firebase/firebase";
 
-const error = () => {
-  message.error("This is a message of error");
-};
+// const error = () => {
+//   message.error("This is a message of error");
+// };
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {

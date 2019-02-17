@@ -29,7 +29,7 @@ class Landing extends Component {
       <div style={styles.background}>
         <div style={styles.darkenBackground}>
           <div style={styles.title}>
-            <span>StudBud</span>
+            <span className="bounceIn infinite">StudBud</span>
           </div>
           <div style={styles.description}>
             <span>Building campus communities like never before.</span>

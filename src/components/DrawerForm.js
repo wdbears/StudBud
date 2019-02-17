@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { Drawer, Form, Button, Col, Row, Input } from "antd";
+import { Drawer, Form, Button, Col, Row, Input, message } from "antd";
+
+const success = () => {
+  message.success("Your message has been sent!");
+};
 
 class DrawerForm extends Component {
   state = { visible: false };
@@ -14,6 +18,7 @@ class DrawerForm extends Component {
     this.setState({
       visible: false
     });
+    success();
   };
 
   render() {
