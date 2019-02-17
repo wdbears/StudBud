@@ -18,7 +18,7 @@ const styles = {
     color: "white"
   },
   description: {
-    fontSize: 70,
+    fontSize: 60,
     color: "white"
   }
 };
@@ -32,7 +32,7 @@ class Landing extends Component {
             <span>StudBud</span>
           </div>
           <div style={styles.description}>
-            <span>Need a hand?</span>
+            <span>Building campus communities like never before.</span>
           </div>
         </div>
       </div>

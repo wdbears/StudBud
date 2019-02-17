@@ -30,8 +30,18 @@ const props = {
   }
 };
 
-class ResourceDrawer extends Component {
-  state = { visible: false };
+class ResourceDrawer extends React.Component {
+  state = { visible: false, titleInput: "" };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("HELLO");
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   showDrawer = () => {
     this.setState({
@@ -64,13 +74,19 @@ class ResourceDrawer extends Component {
             paddingBottom: "108px"
           }}
         >
-          <Form layout="vertical" hideRequiredMark>
+          <Form onSubmit={this.handleSubmit} layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col span={16}>
                 <Form.Item label="Title">
                   {getFieldDecorator("title", {
                     rules: [{ required: true, message: "Please enter a title" }]
-                  })(<Input placeholder="Please enter a title" />)}
+                  })(
+                    <Input
+                      name="titleInput"
+                      onChange={this.handleChange}
+                      placeholder="Please enter a title"
+                    />
+                  )}
                 </Form.Item>
               </Col>
             </Row>
@@ -86,6 +102,8 @@ class ResourceDrawer extends Component {
                     ]
                   })(
                     <Input.TextArea
+                      name="descInput"
+                      onChange={this.handleChange}
                       rows={2}
                       placeholder="Description of resource"
                     />
@@ -98,7 +116,13 @@ class ResourceDrawer extends Component {
                 <Form.Item label="Url for resource">
                   {getFieldDecorator("url", {
                     rules: [{ required: true, message: "Please enter a url" }]
-                  })(<Input placeholder="Please enter a url" />)}
+                  })(
+                    <Input
+                      name="urlInput"
+                      onChange={this.handleChange}
+                      placeholder="Please enter a url"
+                    />
+                  )}
                 </Form.Item>
               </Col>
             </Row>
@@ -134,7 +158,7 @@ class ResourceDrawer extends Component {
             <Button onClick={this.onClose} style={{ marginRight: 8 }}>
               Cancel
             </Button>
-            <Button onClick={this.onClose} type="primary">
+            <Button htmlType="submit" onClick={this.onClose} type="primary">
               Submit
             </Button>
           </div>
