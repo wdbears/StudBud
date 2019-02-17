@@ -29,7 +29,20 @@ class ClassesList extends Component {
         let classes = data.map(classData => {
           return new NYUClassData(classData);
         });
-        this.setState({ classes: classes });
+
+        // Filtered out duplicate course values
+        const result = [];
+        const map = new Map();
+        for (const item of classes) {
+          if (!map.has(item.nyu_course_id)) {
+            map.set(item.nyu_course_id, true);
+            result.push({
+              nyu_course_id: item.nyu_course_id,
+              course_title: item.course_title
+            });
+          }
+        }
+        this.setState({ classes: result });
       })
       .catch(e => {
         // error in e.message
