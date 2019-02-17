@@ -19,9 +19,9 @@ const success = () => {
   message.success("You've successfully subscribed to this class!");
 };
 
-const error = () => {
-  message.error("That didn't work! Please try again.");
-};
+// const error = () => {
+//   message.error("That didn't work! Please try again.");
+// };
 
 class ClassesList extends Component {
   state = {
@@ -74,21 +74,12 @@ class ClassesList extends Component {
           "/classSubscriptions/" +
           this.state.classes[e.currentTarget.value].course_title
       )
-      .set(
-        {
-          course_title: this.state.classes[e.currentTarget.value].course_title,
-          nyu_course_id: this.state.classes[e.currentTarget.value]
-            .nyu_course_id,
-          addedBy: firebase.auth().currentUser.email
-        },
-        function(error) {
-          if (error) {
-            error();
-          } else {
-            success();
-          }
-        }
-      );
+      .set({
+        course_title: this.state.classes[e.currentTarget.value].course_title,
+        nyu_course_id: this.state.classes[e.currentTarget.value].nyu_course_id,
+        addedBy: firebase.auth().currentUser.email
+      });
+    success();
   }
 
   render() {

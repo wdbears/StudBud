@@ -5,7 +5,6 @@ import firebase, { database } from "../components/Firebase/firebase";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-var classList = [];
 
 class Sidebar extends Component {
   // submenu keys of first level
@@ -15,9 +14,8 @@ class Sidebar extends Component {
     super(props);
     this.state = {
       openKeys: ["sub0"],
-      objList: []
+      items: []
     };
-    this.getUserClasses = this.getUserClasses.bind(this);
   }
 
   onOpenChange = openKeys => {
@@ -33,55 +31,25 @@ class Sidebar extends Component {
     }
   };
 
-  componentDidMount() {}
-
-  // getUserClasses() {
-  //   var test = [];
-  //   var ref = database.ref(
-  //     firebase.auth().currentUser.uid + "/classSubscriptions/"
-  //   );
-  //   ref.once("value").then(function(snapshot) {
-  //     snapshot.forEach(function(childSnapshot) {
-  //       var classObj = {
-  //         course_title: childSnapshot.key,
-  //         nyu_course_id: childSnapshot.val().nyu_course_id
-  //       };
-  //       test.push(classObj);
-  //     });
-  //   });
-  //   // Attach an asynchronous callback to read the data at our posts reference
-  //   ref.once("value", function(snapshot) {
-  //     snapshot.forEach(function(childSnapshot) {
-  //       var classObj = {
-  //         course_title: childSnapshot.key,
-  //         nyu_course_id: childSnapshot.val().nyu_course_id
-  //       };
-  //       test.push(classObj);
-  //     });
-  //     //this.setState({ objList: test });
-  //     console.log(test);
-  //   });
-  //   //await this.setState({ objList: temp });
-  // }
-
-  getUserClasses = function() {
-    var query = database.ref(
+  componentDidMount() {
+    const ref = database.ref(
       firebase.auth().currentUser.uid + "/classSubscriptions/"
     );
-    var listOfItems = [];
-    return new Promise((resolve, reject) => {
-      query.once("value").then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          var classObj = {
-            course_title: childSnapshot.key,
-            nyu_course_id: childSnapshot.val().nyu_course_id
-          };
-          listOfItems.push(classObj);
+    ref.on("value", snapshot => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          course_title: items[item].course_title,
+          course_id: items[item].nyu_course_id
         });
-        resolve(listOfItems);
+      }
+      this.setState({
+        items: newState
       });
     });
-  };
+  }
 
   render() {
     return (
@@ -94,33 +62,29 @@ class Sidebar extends Component {
           onOpenChange={this.onOpenChange}
           style={{ borderRight: 0 }}
         >
-          {this.getUserClasses().then(result => {
-            classList = result;
-            classList.map(function(item, i) {
-              return (
-                <SubMenu
-                  key={"sub" + i}
-                  title={
-                    <span>
-                      <Icon type="mail" />
-                      <span>{item.course_title}</span>
-                    </span>
-                  }
-                >
-                  <Menu.Item key={"1" + i}>
-                    <Link to="resourcelist">Resources</Link>
-                  </Menu.Item>
-                  <Menu.Item key={"2" + i}>
-                    <Link to="discussionboard">Discussion</Link>
-                  </Menu.Item>
-                  <Menu.Item key={"3" + i}>
-                    <Link to="mentorlist">Mentors</Link>
-                  </Menu.Item>
-                </SubMenu>
-              );
-            });
+          {this.state.items.map(item => {
+            return (
+              <SubMenu
+                key={"sub" + item.id}
+                title={
+                  <span>
+                    <Icon type="mail" />
+                    <span>{item.course_title}</span>
+                  </span>
+                }
+              >
+                <Menu.Item key={"1" + item.id}>
+                  <Link to="resourcelist">Resources</Link>
+                </Menu.Item>
+                <Menu.Item key={"2" + item.id}>
+                  <Link to="discussionboard">Discussion</Link>
+                </Menu.Item>
+                <Menu.Item key={"3" + item.id}>
+                  <Link to="mentorlist">Mentors</Link>
+                </Menu.Item>
+              </SubMenu>
+            );
           })}
-
           {/* Add Class */}
           <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
             <Icon type="plus" />
