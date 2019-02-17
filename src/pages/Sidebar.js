@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
-// import ResourceList from "./views/ResourceList";
+import firebase, { database } from "../components/Firebase/firebase";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -10,9 +10,17 @@ class Sidebar extends Component {
   // submenu keys of first level
   rootSubmenuKeys = ["sub1", "sub2", "sub4"];
 
-  state = {
-    openKeys: ["sub1"]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      openKeys: ["sub1"],
+      objList: [
+        { coursename: "Intro to Scionce" },
+        { coursename: "Intro to Dogs" }
+      ]
+    };
+    this.getUserClasses = this.getUserClasses.bind(this);
+  }
 
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(
@@ -26,6 +34,38 @@ class Sidebar extends Component {
       });
     }
   };
+
+  componentDidMount() {
+    this.getUserClasses();
+    console.log(this.state.objList[0]);
+  }
+
+  async getUserClasses() {
+    var ref = database.ref(
+      firebase.auth().currentUser.uid + "/classSubscriptions/"
+    );
+    let temp = [];
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.on(
+      "value",
+      function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          const classObj = {
+            course_title: childSnapshot.key,
+            nyu_course_id: childSnapshot.val().nyu_course_id
+          };
+          temp.push(classObj);
+        });
+      },
+      function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+    await this.setState({ objList: temp });
+
+    console.log(temp);
+  }
+
   render() {
     return (
       <Sider width={200} style={{ background: "#fff" }}>
@@ -42,7 +82,7 @@ class Sidebar extends Component {
             title={
               <span>
                 <Icon type="mail" />
-                <span>Course One</span>
+                <span>{}</span>
               </span>
             }
           >
@@ -56,6 +96,7 @@ class Sidebar extends Component {
               <Link to="mentorlist">Mentors</Link>
             </Menu.Item>
           </SubMenu>
+
           {/* Add Class */}
           <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
             <Icon type="plus" />

@@ -60,7 +60,6 @@ class ClassesList extends Component {
   }
 
   addClass(e) {
-    console.log(e.currentTarget.value);
     e.preventDefault();
     database
       .ref(
