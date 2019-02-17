@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Icon, List } from "antd";
+import ResourceDrawer from "../../components/ResourceDrawer.js";
 
 const { Content } = Layout;
 const listData = [
@@ -41,6 +42,7 @@ class ResourceList extends Component {
         >
           <div>
             <span style={{ fontSize: 45 }}>Resources</span>
+            <ResourceDrawer />
           </div>
           <div>
             <List

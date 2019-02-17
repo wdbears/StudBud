@@ -7,6 +7,7 @@ import Register from "../pages/auth/Register";
 import ClassesList from "../pages/views/ClassesList";
 import MentorList from "../pages/views/MentorList";
 import ResourcesList from "../pages/views/ResourceList";
+import Profile from "../pages/Profile";
 import Comments from "../pages/views/Comments";
 import { auth } from "./Firebase/firebase";
 import Landing from "./Landing";
@@ -61,6 +62,7 @@ class App extends Component {
                 <Route path="/resourcelist" component={ResourcesList} />
                 <Route path="/discussionboard" component={Comments} />
                 <Route path="/mentorlist" component={MentorList} />
+                <Route path="/profile" component={Profile} />
               </Layout>
             </Layout>
           </div>
