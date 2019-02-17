@@ -52,6 +52,7 @@ class RegistrationForm extends React.Component {
     return (
       <Row className="center">
         <Col span={6}>
+          <h2>Register</h2>
           <Form onSubmit={this.handleSubmit}>
             <Form.Item label="E-mail">
               {getFieldDecorator("email", {

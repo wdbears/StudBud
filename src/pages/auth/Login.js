@@ -24,6 +24,7 @@ class NormalLoginForm extends React.Component {
     return (
       <Row className="center">
         <Col span={6}>
+          <h2>Login</h2>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator("email", {
