@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Avatar, List, Skeleton, Button, Layout } from "antd";
+import { Avatar, List, Skeleton, Layout } from "antd";
 import NYUClassData from "../../helperMethods/NYUClassData";
+import DrawerForm from "../../components/DrawerForm.js";
 
 const headers = new Headers();
 headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");
@@ -62,7 +63,7 @@ class MentorList extends Component {
             itemLayout="horizontal"
             dataSource={data}
             renderItem={item => (
-              <List.Item actions={[<Button type="primary">Contact</Button>]}>
+              <List.Item actions={[<DrawerForm />]}>
                 <Skeleton avatar title={false} loading={item.loading} active>
                   <List.Item.Meta
                     avatar={
