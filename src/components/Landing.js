@@ -23,7 +23,7 @@ const styles = {
   }
 };
 
-class LandingPage extends Component {
+class Landing extends Component {
   render() {
     return (
       <div style={styles.background}>
@@ -40,4 +40,4 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage;
+export default Landing;

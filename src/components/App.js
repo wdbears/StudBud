@@ -8,10 +8,9 @@ import ClassesList from "../pages/views/ClassesList";
 import MentorList from "../pages/views/MentorList";
 import ResourcesList from "../pages/views/ResourceList";
 import Comments from "../pages/views/Comments";
-import Landing from "../pages/LandingPage";
+import Landing from "./Landing";
 
 import { Layout } from "antd";
-import LandingPage from "../pages/LandingPage";
 
 class App extends Component {
   state = { loggedIn: false };
@@ -26,7 +25,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar onChange={this.onChange} />
             <Route path="/login" component={Login} />
             <Route path="/" component={Landing} />
           </div>
