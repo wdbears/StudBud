@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
-import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "../styles/Main.css";
 import { auth } from "../../components/Firebase/firebase";
 
