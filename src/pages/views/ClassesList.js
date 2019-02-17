@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { List, Button, Skeleton, Layout } from "antd";
 import NYUClassData from "../../helperMethods/NYUClassData";
+import firebase, { database } from "../../components/Firebase/firebase";
 
 const headers = new Headers();
 headers.append("Authorization", "Bearer ca893b71-2357-3da0-90d3-a6d0f74fd0f7");
@@ -10,6 +11,7 @@ const init = {
   cors: "no-cors",
   headers
 };
+
 const url =
   "https://sandbox.api.it.nyu.edu/class-roster-exp/classes/?term_description=Spring%202018";
 
@@ -17,8 +19,11 @@ class ClassesList extends Component {
   state = {
     initLoading: false,
     loading: false,
-    list: []
+    list: [],
+    classes: []
   };
+
+  addClass = this.addClass.bind(this);
 
   fetchData() {
     fetch(url, init)
@@ -51,6 +56,23 @@ class ClassesList extends Component {
 
   componentDidMount() {
     this.fetchData();
+    console.log();
+  }
+
+  addClass(e) {
+    console.log(e.currentTarget.value);
+    e.preventDefault();
+    database
+      .ref(
+        firebase.auth().currentUser.uid +
+          "/classSubscriptions/" +
+          this.state.classes[e.currentTarget.value].course_title
+      )
+      .set({
+        course_title: this.state.classes[e.currentTarget.value].course_title,
+        nyu_course_id: this.state.classes[e.currentTarget.value].nyu_course_id,
+        addedBy: firebase.auth().currentUser.email
+      });
   }
 
   render() {
@@ -69,8 +91,14 @@ class ClassesList extends Component {
           <List
             itemLayout="horizontal"
             dataSource={this.state.classes}
-            renderItem={item => (
-              <List.Item actions={[<Button type="primary">Subscribe</Button>]}>
+            renderItem={(item, key) => (
+              <List.Item
+                actions={[
+                  <Button value={key} onClick={this.addClass} type="primary">
+                    Subscribe
+                  </Button>
+                ]}
+              >
                 <Skeleton avatar title={false} loading={item.loading} active>
                   <List.Item.Meta
                     title={item.course_title}
