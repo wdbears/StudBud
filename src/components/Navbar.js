@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Icon } from "antd";
 import { Link, NavLink } from "react-router-dom";
-import { Button } from "antd/lib/radio";
 
 class Navbar extends Component {
   state = {
@@ -19,11 +18,13 @@ class Navbar extends Component {
   authSwitch() {
     if (this.props.userExists) {
       return (
-        <Menu.Item key="signout" style={{ float: "right" }}>
-          <Button onClick={this.props.logout}>
-            <Icon type="logout" />
-            Signout
-          </Button>
+        <Menu.Item
+          key="signout"
+          onClick={this.props.logout}
+          style={{ float: "right" }}
+        >
+          <Icon type="logout" />
+          Signout
         </Menu.Item>
       );
     } else {
