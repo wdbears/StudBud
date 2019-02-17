@@ -8,8 +8,10 @@ import ClassesList from "../pages/views/ClassesList";
 import MentorList from "../pages/views/MentorList";
 import ResourcesList from "../pages/views/ResourceList";
 import Comments from "../pages/views/Comments";
+import Landing from "../pages/LandingPage";
 
 import { Layout } from "antd";
+import LandingPage from "../pages/LandingPage";
 
 class App extends Component {
   state = { loggedIn: false };
@@ -24,10 +26,9 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
-            <Navbar onChange={this.onChange} />
-            <Route exact path="/" component={Login} />
-            <Route exact path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Navbar />
+            <Route path="/login" component={Login} />
+            <Route path="/" component={Landing} />
           </div>
         </BrowserRouter>
       );
