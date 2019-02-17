@@ -6,6 +6,14 @@ import firebase, { database } from "../components/Firebase/firebase";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
+const styles = {
+  loggo: {
+    height: "32px",
+    background: "rgba(255,255,255,.2)",
+    margin: "16px"
+  }
+};
+
 class Sidebar extends Component {
   // submenu keys of first level
   rootSubmenuKeys = ["sub1", "sub2", "sub4"];
@@ -53,14 +61,24 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <Sider width={300} style={{ background: "#fff" }}>
+      <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={broken => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+        width={300}
+        style={{ background: "#fff" }}
+      >
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub0"]}
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
-          style={{ borderRight: 0 }}
         >
           {this.state.items.map(item => {
             return (
@@ -93,6 +111,7 @@ class Sidebar extends Component {
             </span>
           </Menu.Item>
         </Menu>
+        <div style={styles.loggo} />
       </Sider>
     );
   }
