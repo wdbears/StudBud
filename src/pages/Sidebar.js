@@ -53,7 +53,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <Sider width={200} style={{ background: "#fff" }}>
+      <Sider width={300} style={{ background: "#fff" }}>
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}

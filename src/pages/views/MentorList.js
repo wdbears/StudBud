@@ -16,12 +16,32 @@ const init = {
 
 const data = [
   {
-    title: "Mentor 1",
-    description: "Math"
+    title: "Abdullah Gulfam",
+    description: "Calculus"
   },
   {
-    title: "Mentor 2",
-    description: "English"
+    title: "Brandon Yee",
+    description: "Data Structure"
+  },
+  {
+    title: "Steve Wong",
+    description: "Head of Computer Science"
+  },
+  {
+    title: "Lily Zhai",
+    description: "Programming 3"
+  },
+  {
+    title: "Pitom Schrute",
+    description: "Agriculture"
+  },
+  {
+    title: "Jim Beasely",
+    description: "Business"
+  },
+  {
+    title: "Michael Malone",
+    description: "Accounting"
   }
 ];
 
