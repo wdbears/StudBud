@@ -27,7 +27,7 @@ class ClassesList extends Component {
       })
       .then(data => {
         let classes = data.map(classData => {
-          return new Set(new NYUClassData(classData));
+          return new NYUClassData(classData);
         });
         this.setState({ classes: classes });
       })
