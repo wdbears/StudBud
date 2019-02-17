@@ -9,6 +9,7 @@ import MentorList from "../pages/views/MentorList";
 import ResourcesList from "../pages/views/ResourceList";
 import Comments from "../pages/views/Comments";
 import { auth } from "./Firebase/firebase";
+import Landing from "./Landing";
 
 import { Layout } from "antd";
 
@@ -41,9 +42,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Navbar userExists={this.state.user} />
-            <Route exact path="/" component={Login} />
-            <Route exact path="/login" component={Login} />
+            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route exact path="/" component={Landing} />
           </div>
         </BrowserRouter>
       );
