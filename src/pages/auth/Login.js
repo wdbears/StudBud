@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import "../styles/Main.css";
 import { auth } from "../../components/Firebase/firebase";
@@ -12,6 +13,7 @@ class NormalLoginForm extends React.Component {
         .signInWithEmailAndPassword(values.email, values.password)
         .then(result => {
           const user = result.user;
+          this.props.history.push("/");
           this.setState({
             user
           });
@@ -82,4 +84,6 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-export default Form.create({ name: "normal_login" })(NormalLoginForm);
+export default withRouter(
+  Form.create({ name: "normal_login" })(NormalLoginForm)
+);

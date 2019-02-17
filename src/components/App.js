@@ -56,7 +56,7 @@ class App extends Component {
             <Layout style={{ minHeight: "90vh", zIndex: "-1" }}>
               <Sidebar />
               <Layout>
-                <Route path="/register" component={Register} />
+                <Route exact path="/" component={ResourcesList} />
                 <Route path="/classes" component={ClassesList} />
                 <Route path="/resourcelist" component={ResourcesList} />
                 <Route path="/discussionboard" component={Comments} />
