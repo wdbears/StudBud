@@ -39,7 +39,7 @@ class MentorList extends Component {
           return new NYUClassData(classData);
         });
         this.setState({ classes: classes });
-        console.log(this.state.classes);
+        // console.log(this.state.classes);
       })
       .catch(e => {
         // error in e.message

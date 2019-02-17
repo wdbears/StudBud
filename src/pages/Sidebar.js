@@ -5,7 +5,7 @@ import firebase, { database } from "../components/Firebase/firebase";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-var arr = [];
+var classList = [];
 
 class Sidebar extends Component {
   // submenu keys of first level
@@ -14,11 +14,8 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openKeys: ["sub1"],
-      objList: [
-        { coursename: "Intro to Scionce" },
-        { coursename: "Intro to Dogs" }
-      ]
+      openKeys: ["sub0"],
+      objList: []
     };
     this.getUserClasses = this.getUserClasses.bind(this);
   }
@@ -36,11 +33,7 @@ class Sidebar extends Component {
     }
   };
 
-  componentDidMount() {
-    this.getUserClasses().then(result => {
-      console.log(result);
-    });
-  }
+  componentDidMount() {}
 
   // getUserClasses() {
   //   var test = [];
@@ -96,30 +89,37 @@ class Sidebar extends Component {
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
+          defaultOpenKeys={["sub0"]}
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
           style={{ borderRight: 0 }}
         >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="mail" />
-                <span>{}</span>
-              </span>
-            }
-          >
-            <Menu.Item key="1">
-              <Link to="resourcelist">Resources</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="discussionboard">Discussion</Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="mentorlist">Mentors</Link>
-            </Menu.Item>
-          </SubMenu>
+          {this.getUserClasses().then(result => {
+            classList = result;
+            classList.map(function(item, i) {
+              return (
+                <SubMenu
+                  key={"sub" + i}
+                  title={
+                    <span>
+                      <Icon type="mail" />
+                      <span>{item.course_title}</span>
+                    </span>
+                  }
+                >
+                  <Menu.Item key={"1" + i}>
+                    <Link to="resourcelist">Resources</Link>
+                  </Menu.Item>
+                  <Menu.Item key={"2" + i}>
+                    <Link to="discussionboard">Discussion</Link>
+                  </Menu.Item>
+                  <Menu.Item key={"3" + i}>
+                    <Link to="mentorlist">Mentors</Link>
+                  </Menu.Item>
+                </SubMenu>
+              );
+            });
+          })}
 
           {/* Add Class */}
           <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
