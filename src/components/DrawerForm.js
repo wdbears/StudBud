@@ -39,6 +39,7 @@ class DrawerForm extends Component {
               <Col span={16}>
                 <Form.Item label="Name">
                   {getFieldDecorator("name", {
+                    initialValue: "Geoffrey Giraffe",
                     rules: [
                       { required: true, message: "Please enter your name" }
                     ]
