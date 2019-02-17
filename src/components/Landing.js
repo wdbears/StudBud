@@ -18,8 +18,10 @@ const styles = {
     color: "white"
   },
   description: {
-    fontSize: 60,
-    color: "white"
+    fontSize: 50,
+    color: "white",
+    fontStyle: "italic",
+    fontWeight: "regular"
   }
 };
 
@@ -32,7 +34,7 @@ class Landing extends Component {
             <span className="bounceIn infinite">StudBud</span>
           </div>
           <div style={styles.description}>
-            <span>Building campus communities like never before.</span>
+            <span>Building learning communities like never before.</span>
           </div>
         </div>
       </div>
