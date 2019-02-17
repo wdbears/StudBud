@@ -5,6 +5,24 @@ import firebase, { database } from "../components/Firebase/firebase";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const classList = [
+  {
+    courseTitle: "Information Theory",
+    courseID: "EL-GY6063"
+  },
+  {
+    courseTitle: "Geotechnical Engineering",
+    courseID: "CE-UY3153"
+  },
+  {
+    courseTitle: "Investment Banking and Brokerage",
+    courseID: "FRE-GY6111"
+  },
+  {
+    courseTitle: "Structural Analysis",
+    courseID: "CE-UY3133"
+  }
+];
 
 class Sidebar extends Component {
   // submenu keys of first level
@@ -13,11 +31,8 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openKeys: ["sub1"],
-      objList: [
-        { coursename: "Intro to Scionce" },
-        { coursename: "Intro to Dogs" }
-      ]
+      openKeys: ["sub0"],
+      objList: []
     };
     this.getUserClasses = this.getUserClasses.bind(this);
   }
@@ -35,35 +50,29 @@ class Sidebar extends Component {
     }
   };
 
-  componentDidMount() {
-    this.getUserClasses();
-    console.log(this.state.objList[0]);
+  componentDidUpdate() {
+    console.log(this.getUserClasses());
   }
 
-  async getUserClasses() {
+  getUserClasses() {
     var ref = database.ref(
       firebase.auth().currentUser.uid + "/classSubscriptions/"
     );
-    let temp = [];
-    // Attach an asynchronous callback to read the data at our posts reference
     ref.on(
       "value",
-      function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          const classObj = {
-            course_title: childSnapshot.key,
-            nyu_course_id: childSnapshot.val().nyu_course_id
-          };
-          temp.push(classObj);
+      function snapshotToArray(snapshot) {
+        var returnArr = [];
+        snapshot.forEach(async function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          await returnArr.push(item);
         });
+        return returnArr;
       },
       function(errorObject) {
         console.log("The read failed: " + errorObject.code);
       }
     );
-    await this.setState({ objList: temp });
-
-    console.log(temp);
   }
 
   render() {
@@ -72,30 +81,34 @@ class Sidebar extends Component {
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
+          defaultOpenKeys={["sub0"]}
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
           style={{ borderRight: 0 }}
         >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="mail" />
-                <span>{}</span>
-              </span>
-            }
-          >
-            <Menu.Item key="1">
-              <Link to="resourcelist">Resources</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="discussionboard">Discussion</Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="mentorlist">Mentors</Link>
-            </Menu.Item>
-          </SubMenu>
+          {classList.map(function(item, i) {
+            return (
+              <SubMenu
+                key={"sub" + i}
+                title={
+                  <span>
+                    <Icon type="mail" />
+                    <span>{item.courseTitle}</span>
+                  </span>
+                }
+              >
+                <Menu.Item key={"1" + i}>
+                  <Link to="resourcelist">Resources</Link>
+                </Menu.Item>
+                <Menu.Item key={"2" + i}>
+                  <Link to="discussionboard">Discussion</Link>
+                </Menu.Item>
+                <Menu.Item key={"3" + i}>
+                  <Link to="mentorlist">Mentors</Link>
+                </Menu.Item>
+              </SubMenu>
+            );
+          })}
 
           {/* Add Class */}
           <Menu.Item key="0" style={{ position: "absolute", bottom: 5 }}>
