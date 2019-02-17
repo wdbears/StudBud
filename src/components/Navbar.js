@@ -15,6 +15,16 @@ class Navbar extends Component {
     this.authSwitch();
   }
 
+  authProfile() {
+    if (this.props.userExists) {
+      return (
+        <Menu.Item style={{ float: "right" }}>
+          <NavLink to="/profile">My Profile</NavLink>
+        </Menu.Item>
+      );
+    }
+  }
+
   authSwitch() {
     if (this.props.userExists) {
       return (
@@ -56,6 +66,7 @@ class Navbar extends Component {
           </Link>
         </Menu.Item>
         {this.authSwitch()}
+        {this.authProfile()}
       </Menu>
     );
   }
