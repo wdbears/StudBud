@@ -2,14 +2,20 @@ import React from "react";
 import { Row, Col, Form, Icon, Input, Button, Checkbox } from "antd";
 import { Link } from "react-router-dom";
 import "../styles/Main.css";
+import { auth } from "../../components/Firebase/firebase";
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
+      auth
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then(result => {
+          const user = result.user;
+          this.setState({
+            user
+          });
+        });
     });
   };
 
@@ -20,16 +26,14 @@ class NormalLoginForm extends React.Component {
         <Col span={6}>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
-              {getFieldDecorator("userName", {
-                rules: [
-                  { required: true, message: "Please input your username!" }
-                ]
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
               })(
                 <Input
                   prefix={
                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
-                  placeholder="Username"
+                  placeholder="E-mail"
                 />
               )}
             </Form.Item>

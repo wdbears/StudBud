@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Row, Col, Checkbox, Button } from "antd";
 import "../styles/Main.css";
-import firebase, { auth } from "../../components/Firebase/firebase";
+import { auth } from "../../components/Firebase/firebase";
 
 class RegistrationForm extends React.Component {
   state = {

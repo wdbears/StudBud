@@ -8,23 +8,39 @@ import ClassesList from "../pages/views/ClassesList";
 import MentorList from "../pages/views/MentorList";
 import ResourcesList from "../pages/views/ResourceList";
 import Comments from "../pages/views/Comments";
+import { auth } from "./Firebase/firebase";
 
 import { Layout } from "antd";
 
 class App extends Component {
-  state = { loggedIn: false };
-  onChange = this.onChange.bind(this);
+  state = {
+    user: null
+  };
 
-  onChange(checked) {
-    this.setState({ loggedIn: checked });
+  logout = this.logout.bind(this);
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+  }
+
+  logout() {
+    auth.signOut().then(() => {
+      this.setState({
+        user: null
+      });
+    });
   }
 
   render() {
-    if (!this.state.loggedIn) {
+    if (!this.state.user) {
       return (
         <BrowserRouter>
           <div>
-            <Navbar onChange={this.onChange} />
+            <Navbar userExists={this.state.user} />
             <Route exact path="/" component={Login} />
             <Route exact path="/login" component={Login} />
             <Route path="/register" component={Register} />
@@ -35,7 +51,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
-            <Navbar onChange={this.onChange} />
+            <Navbar logout={this.logout} userExists={this.state.user} />
             <Layout style={{ minHeight: "90vh", zIndex: "-1" }}>
               <Sidebar />
               <Layout>
